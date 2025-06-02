@@ -1,20 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Play Music by avcodev (Angelo Velandia)
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content fullscreen>
+  <div class="container">
+    <div class="player">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <div class="cover-container">
+        <img [src]="songs[songActive].cover" alt="Cover" />
+      </div>
+
+      <div class="song-info">
+        <h2>{{ songs[songActive].title }}</h2>
+        <p>{{ songs[songActive].artist }}</p>
+      </div>
+
+      <ion-range min="0" max="100" step="1" [value]="progress" (ionChange)="seekTo($event.detail.value)"
+        color="primary"></ion-range>
+
+      <div class="controls">
+        <ion-button fill="clear" size="large" (click)="prevSong()">
+          <ion-icon name="play-skip-back-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button fill="clear" size="large" (click)="playMusic()">
+          <ion-icon [name]="isPlaying ? 'pause-circle' : 'play-circle'"></ion-icon>
+        </ion-button>
+
+        <ion-button fill="clear" size="large" (click)="nextSong()">
+          <ion-icon name="play-skip-forward-outline"></ion-icon>
+        </ion-button>
+      </div>
+
+    </div>
   </div>
 </ion-content>

@@ -1,27 +1,201 @@
-#container {
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  background: #121212;
+  color: #fff;
   text-align: center;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  .cover-container {
+    width: 80vw;
+    max-width: 300px;
+    aspect-ratio: 1; 
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .song-info {
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+
+    h2 {
+      margin: 0;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    p {
+      margin: 0.3rem 0 0;
+      font-weight: 500;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      color: #b3b3b3;
+      word-break: break-word;
+    }
+  }
+
+  ion-range {
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+
+    .range-slider {
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    .range-knob {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      transition: width 0.2s ease, height 0.2s ease;
+    }
+
+    &:focus-within {
+      .range-knob {
+        width: 26px;
+        height: 26px;
+      }
+    }
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+
+    ion-button {
+      color: #1db954;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      transition: transform 0.2s ease;
+
+      ion-icon {
+        font-size: inherit;
+      }
+
+      &:hover,
+      &:focus {
+        transform: scale(1.1);
+      }
+    }
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+@media (min-width: 600px) {
+  .player {
+    padding: 2rem 3rem;
+
+    .cover-container {
+      max-width: 350px;
+      margin-bottom: 2rem;
+    }
+
+    .song-info {
+      margin-bottom: 2rem;
+
+      h2 {
+        font-size: 2.4rem;
+      }
+
+      p {
+        font-size: 1.4rem;
+      }
+    }
+
+    ion-range {
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+    }
+
+    .controls {
+      gap: 4rem;
+
+      ion-button {
+        font-size: 4rem;
+      }
+    }
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+@media (min-width: 900px) {
+  .player {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 3rem 4rem;
 
-  color: #8c8c8c;
+    .cover-container {
+      max-width: 400px;
+    }
 
-  margin: 0;
+    .song-info {
+      h2 {
+        font-size: 2.8rem;
+      }
+
+      p {
+        font-size: 1.6rem;
+      }
+    }
+
+    ion-range {
+      max-width: 600px;
+    }
+
+    .controls {
+      gap: 5rem;
+
+      ion-button {
+        font-size: 4.5rem;
+      }
+    }
+  }
 }
 
-#container a {
-  text-decoration: none;
+ion-range {
+  width: 100%;
+  padding: 0 10px;
+  margin: 16px 0;
+
+  &::part(bar) {
+    background: #404040;  /* barra inactiva */
+    height: 6px;
+    border-radius: 12px;
+  }
+
+  &::part(bar-active) {
+    height: 6px;
+    top: .05rem;
+    background: #1db954; /* barra activa */
+  }
+
+  &::part(knob) {
+    background: #1db954;
+    width: 24px;
+    height: 24px;
+    box-shadow: 0 0 8px #1db954aa;
+  }
+
+  &::part(pin) {
+    background: #1db954;
+    color: white;
+  }
 }
+
