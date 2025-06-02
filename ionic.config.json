@@ -1,0 +1,7 @@
+{
+  "name": "play-music-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
